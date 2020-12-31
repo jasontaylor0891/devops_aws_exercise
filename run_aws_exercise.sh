@@ -52,9 +52,25 @@ function main
         exit 1
     fi
     
-    demofilesloc="/unit/work"
-    resourceName=$2
-    printf "INFO: Create Service was successful.\n"
+    export AWS_ACCESS_KEY_ID=$1
+    export AWS_SECRET_ACCESS_KEY=$2
+    
+    instance_size=$3
+    instance_name=$4
+    upload_file=$5
+    
+    if [ ! -f "$upload_file" ]; then
+        echo "$upload_file does not exist."
+	exit 1
+    fi
+   
+    ansible-playbook key1.yml
+    ansible-playbook sg.yml
+    ansible-playbook run.yml
+    
+    #demofilesloc="/unit/work"
+    #resourceName=$2
+    #printf "INFO: Create Service was successful.\n"
 	
     exit 0
 }
