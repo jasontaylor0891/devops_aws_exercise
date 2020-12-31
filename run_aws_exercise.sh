@@ -1,4 +1,3 @@
-
 #!/bin/bash
 #########################################################################################################
 ##
@@ -12,7 +11,7 @@
 ##
 ##  DEPENDENCIES:      None
 ## 
-##  DESCRIPTION:       This script is used to run the EPM Cloud createService on the OCI environment.
+##  DESCRIPTION:       This script is used to run the DevOps AWS Exercise for DevOps Support Escalation.
 ##
 ##  EXAMPLE USAGE:     ./run_aws_exercise.sh aws_access_key_id aws_secret_access_key instance_size instance_name file
 ##          
@@ -40,7 +39,6 @@ function usage
     echo "Usage: ./run_aws_exercise.sh aws_access_key_id aws_secret_access_key instance_size instance_name file"
 }
 
-
 #----------------------------------
 # MAIN PROGRAM
 #----------------------------------
@@ -59,19 +57,15 @@ function main
     instance_name=$4
     upload_file=$5
     
+    #Verify the upload file exist
     if [ ! -f "$upload_file" ]; then
         echo "$upload_file does not exist."
 	exit 1
     fi
    
-    ansible-playbook key1.yml
-    ansible-playbook sg.yml
-    ansible-playbook run.yml
+    #Run ansible playbook
+    ansible-playbook create_ec2.yml -e "instance_size=$instance_size instance_name=$instance_name upload_file=$upload_file"
     
-    #demofilesloc="/unit/work"
-    #resourceName=$2
-    #printf "INFO: Create Service was successful.\n"
-	
     exit 0
 }
 
