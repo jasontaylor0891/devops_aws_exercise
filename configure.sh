@@ -38,7 +38,7 @@ function main
     
     sudo mkdir -p /etc/ansible
     sudo cp setup_files/ansible.cfg /etc/ansible/ansible.cfg
-    sed -i "s|KEYDIR|${PWD}|g" /etc/ansible/ansible.cfg
+    sudo sed -i "s|KEYDIR|${PWD}|g" /etc/ansible/ansible.cfg
     
     exit 0
 }
