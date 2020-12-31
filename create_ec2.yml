@@ -1,0 +1,6 @@
+---
+- hosts: '{{ targets | default("no_host") }}'
+  gather_facts: yes
+  connection: ssh
+  roles:
+    - role: create_ec2 

@@ -1,0 +1,15 @@
+- name: ec2 launcher
+  hosts: localhost
+  connection: local
+  tasks:
+  - name: example using security group rule descriptions
+    amazon.aws.ec2_group:
+       name: devops-aws-exercise
+       description: sg with rule descriptions
+       region: us-east-2
+       rules:
+         - proto: tcp
+           ports:
+           - 22
+           cidr_ip: 0.0.0.0/0
+           rule_desc: allow all on port 22

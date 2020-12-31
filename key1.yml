@@ -1,0 +1,19 @@
+- name: ec2 launcher
+  hosts: localhost
+  connection: local
+  tasks:
+  - name: remove key pair by name
+    amazon.aws.ec2_key:
+      name: devops_aws_exercise
+      region: us-east-2
+      state: absent
+
+  - name: Create a new EC2 key
+    ec2_key:
+       name: devops_aws_exercise
+       region: us-east-2
+    register: ec2_key_result
+
+  - name: Save private key
+    copy: content="{{ ec2_key_result.key.private_key }}" dest="./devops_aws_exercise.pem" mode=0600
+    when: ec2_key_result.changed 
