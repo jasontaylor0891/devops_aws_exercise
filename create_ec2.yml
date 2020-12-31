@@ -10,11 +10,23 @@
       state: absent
 
   - name: Create a new EC2 key
-    ec2_key:
+    amazon.aws.ec2_key:
        name: devops_aws_exercise
        region: us-east-2
     register: ec2_key_result
 
   - name: Save private key
     copy: content="{{ ec2_key_result.key.private_key }}" dest="./devops_aws_exercise.pem" mode=0600
-    when: ec2_key_result.changed 
+    when: ec2_key_result.changed
+    
+  - name: example using security group rule descriptions
+    amazon.aws.ec2_group:
+       name: devops-aws-exercise
+       description: sg with rule descriptions
+       region: us-east-2
+       rules:
+         - proto: tcp
+           ports:
+           - 22
+           cidr_ip: 0.0.0.0/0
+           rule_desc: allow all on port 22
