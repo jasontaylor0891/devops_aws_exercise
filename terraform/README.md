@@ -1,18 +1,55 @@
-DevOps AWS Exercise for - DevOps Support Escalation (Tier III) Position
 
-Write a code sample that does the following tasks:
+# DevOps AWS Exercise - Terraform
 
-1.	Launch an EC2 instance of the specified size and name
-2.	Place a file with a variable provided filename in the /tmp directory
+Configure and Setup for the Terraform example.
 
-Input Variables:  AWS Credentials, Instance Size, Instance Name, file name (to place in /tmp directory)
- 
-Assumptions:  You may assume that the file will be no bigger than 1kb.
+## Install
 
-Requirements:
+```shell
+git clone https://github.com/jasontaylor0891/devops_aws_exercise.git
+```
 
-1.	Ensure your code actually runs. Demonstrate in a video example the code actually executes and copy a file to /tmp
-2.	Provide clear written instructions to successfully setup, build (if necessary) and run the solution from a newly provisioned Linux or Windows server. Make sure the instructions allow someone else to successfully run the code on a different computer: copy the file to /tmp
-3.	Provide any tests that helped you write/test your code
-4.	Provide the source code for the code sample
-5.	Document any assumptions you made that impacted your code
+## Requirements 
+
+Install Python and required packages.
+
+```shell
+sudo yum install python3 -y
+sudo pip3 install boto boto3
+```
+
+Install Terraform
+
+```shell
+wget https://releases.hashicorp.com/terraform/0.14.3/terraform_0.14.3_linux_amd64.zip
+sudo unzip terraform_0.14.3_linux_amd64.zip -d /bin
+```
+
+AWS CLI
+
+Install and configure the AWS CLI.
+
+## Configure
+
+After extracting the source code change to the devops_aws_exercise/ansible directory.
+
+```shell
+cd devops_aws_exercise/terraform/
+terraform init
+```
+
+Run configure.py to create the required key pair.
+
+```shell
+python3 configure.py
+chmod 600 devops_aws_exercise_tf.pem
+```
+
+## Run terraform example
+
+```shell
+terraform apply -var 'access_key=AKIXXXXXXXXXXXXD5GI' -var
+'secret_key=RO99kDS32332frgF+Mr8R8F/jGZRG2Ym30Lw46' -var 'uploadFile=/home/ec2-
+user/test.txt' -var 'instance_size=t2.micro' -var 'instance_name=aws_test' -auto-approve
+```
+
