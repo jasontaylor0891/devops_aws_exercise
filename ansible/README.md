@@ -1,18 +1,36 @@
-DevOps AWS Exercise for - DevOps Support Escalation (Tier III) Position
 
-Write a code sample that does the following tasks:
+# DevOps AWS Exercise - Ansible
 
-1.	Launch an EC2 instance of the specified size and name
-2.	Place a file with a variable provided filename in the /tmp directory
+Configure and Setup for the Ansible example.
 
-Input Variables:  AWS Credentials, Instance Size, Instance Name, file name (to place in /tmp directory)
- 
-Assumptions:  You may assume that the file will be no bigger than 1kb.
+## Install
 
-Requirements:
+```shell
+git clone https://github.com/jasontaylor0891/devops_aws_exercise.git
+```
 
-1.	Ensure your code actually runs. Demonstrate in a video example the code actually executes and copy a file to /tmp
-2.	Provide clear written instructions to successfully setup, build (if necessary) and run the solution from a newly provisioned Linux or Windows server. Make sure the instructions allow someone else to successfully run the code on a different computer: copy the file to /tmp
-3.	Provide any tests that helped you write/test your code
-4.	Provide the source code for the code sample
-5.	Document any assumptions you made that impacted your code
+## Configure
+
+After extracting the source code change to the devops_aws_exercise/ansible directory.
+
+```shell
+cd devops_aws_exercise/ansible/
+chmod 755 configure.sh
+chmod 755 run_aws_exercise.sh
+./configure.sh
+```
+
+## Run Ansible example
+
+```shell
+./run_aws_exercise.sh aws_access_key_id aws_secret_access_key instance_size instance_name
+file
+```
+
+Run the following updating the parameters for your environment:
+
+```shell
+./run_aws_exercise.sh AKIXXXXXXXXXXXXD5GI RO99kDS32332frgF+Mr8R8F/jGZRG2Ym30Lw46
+t2.micro aws_test1 /home/ec2-user/test.txt
+```
+
